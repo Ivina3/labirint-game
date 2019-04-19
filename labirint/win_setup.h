@@ -78,6 +78,7 @@ VOID WINAPI SetConsolePalette(COLORREF palette[], int fontX, int fontY, wchar_t 
 static void GetConsoleSizeInfo(CONSOLE_INFO *pci, HANDLE hOutput);
 int windowsVersionTest(void);
 
+WORD make_attrib(unsigned foreground, unsigned background);
 
 enum concol
 {
@@ -103,3 +104,6 @@ void setcolor(concol textcolor, concol backcolor);
 void setcolor(int textcolor, int backcolor);
 int textcolor();/*returns current text color*/
 int backcolor();/*returns current background color*/
+
+struct display_t;
+void setup_window(const short int win_h, const short int win_w, display_t& display_settings);

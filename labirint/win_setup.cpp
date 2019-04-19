@@ -1,5 +1,5 @@
 #include "win_setup.h"
-
+#include "types.h"
 /******************************************************************************
 windowsVersionTest
 
@@ -22,6 +22,7 @@ int windowsVersionTest(void)
 		return 0;
 	}
 }
+
 
 /******************************************************************************
 SetConsolePalette
@@ -216,4 +217,65 @@ void setcolor(int textcol, int backcol)
 	textcol %= 16; backcol %= 16;
 	unsigned short wAttributes = ((unsigned)backcol << 4) | (unsigned)textcol;
 	SetConsoleTextAttribute(std_con_out, wAttributes);
+}
+
+WORD make_attrib(unsigned foreground, unsigned background)
+{
+	return WORD(foreground) | (WORD(background) << 4);
+}
+
+
+void setup_window(const short int win_h, const short int win_w, display_t& display_settings)
+{
+	/* Setting the color palette to the default colors
+	/* Browse MSDN for COLORREF to learn more about these RGB values */
+	COLORREF palette[16] =
+	{
+		0x0022B14C, 0x003333ff, 0x0033ff33, 0x00d5bfd7,
+		0x00e970dd, 0x00ffff0f, 0x002fffff, 0x00c0c0c0,
+		0x08ed2603, 0x00000000, 0x0000ff00, 0x00ffff00,
+		0x00ff0080, 0x00ff00ff, 0x0000ffff, 0x00ffffff,
+
+	};
+	/* Search MSDN for the RGB macro to easily generate COLORREF values */
+	//SetConsolePalette(palette, 43, 72, L"Lucida Console");
+	SetConsolePalette(palette, 12, 16, L"Consolas");
+
+	//printf("Huge Lucida!\n");
+	//getchar();
+
+
+	/*for (int i = 0; i <= 15; i++)
+	{
+	setcolor(i, black);
+	printf("color %d ", i);
+	}
+	printf("\n");*/
+	/* Window size coordinates, be sure to start index at zero! */
+	SMALL_RECT windowSize = { 0, 0, win_w - 1, win_h - 1 };
+
+	/* A COORD struct for specificying the console's screen buffer dimensions */
+	display_settings.bufferSize = { win_w, win_h };
+	/* Setting up different variables for passing to WriteConsoleOutput */
+	display_settings.characterBufferSize = { win_w, win_h };
+	display_settings.characterPosition = { 0, 0 };
+	display_settings.consoleWriteArea = { 0, 0, win_w - 1, win_h - 1 };
+
+
+	/* A CHAR_INFO structure containing data about a single character */
+	display_settings.consoleBuffer = new CHAR_INFO[win_h*win_w];
+
+	/* initialize handles */
+	display_settings.wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
+	display_settings.rHnd = GetStdHandle(STD_INPUT_HANDLE);
+
+	/* Set the console's title */
+	SetConsoleTitle(L"Our shiny new title!");
+
+	/* Set the window size */
+	SetConsoleWindowInfo(display_settings.wHnd, TRUE, &windowSize);
+
+	/* Set the screen's buffer size */
+	SetConsoleScreenBufferSize(display_settings.wHnd, display_settings.bufferSize);
+
 }

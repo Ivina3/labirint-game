@@ -38,9 +38,10 @@ void draw_field(map_t map, int* color,display_t display)
 			}
 			else if (c == zvezda)
 			{
+				//setcolor(dark_red, black);
 				//setcolor(dark_magenta, dark_magenta);
 				display.consoleBuffer[x + map.w * y].Char.AsciiChar = (unsigned char)15;
-				display.consoleBuffer[x + map.w * y].Attributes = 6;
+				display.consoleBuffer[x + map.w * y].Attributes = 0;
 			}
 			else if (c == person)
 			{
@@ -57,7 +58,7 @@ void draw_field(map_t map, int* color,display_t display)
 			else if (c == mob)
 			{
 				display.consoleBuffer[x + map.w * y].Char.AsciiChar = (unsigned char)253;
-				display.consoleBuffer[x + map.w * y].Attributes = 1;
+				display.consoleBuffer[x + map.w * y].Attributes = make_attrib(0, 2);
 			}
 			else if (c == exittt)
 			{
