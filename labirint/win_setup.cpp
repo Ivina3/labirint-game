@@ -229,14 +229,15 @@ void setup_window(const short int win_h, const short int win_w, display_t& displ
 {
 	/* Setting the color palette to the default colors
 	/* Browse MSDN for COLORREF to learn more about these RGB values */
+
 	COLORREF palette[16] =
 	{
-		0x0022B14C, 0x003333ff, 0x0033ff33, 0x00d5bfd7,
-		0x00e970dd, 0x00ffff0f, 0x002fffff, 0x00c0c0c0,
+		0x00000000, 0x00ffffff, 0x00302bff, 0x00d5bfd7,
+		0x007f7f7f, 0x00ffff0f, 0x002fffff, 0x00c0c0c0,
 		0x08ed2603, 0x00000000, 0x0000ff00, 0x00ffff00,
 		0x00ff0080, 0x00ff00ff, 0x0000ffff, 0x00ffffff,
-
 	};
+
 	/* Search MSDN for the RGB macro to easily generate COLORREF values */
 	//SetConsolePalette(palette, 43, 72, L"Lucida Console");
 	SetConsolePalette(palette, 12, 16, L"Consolas");
