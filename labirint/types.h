@@ -88,6 +88,7 @@ struct resuarces_t
 	S2D_Image* life;
 	S2D_Sound *zvezda_;
 	S2D_Sound *mob_;
+	S2D_Sound *mob_killed;
 	S2D_Sound *sword_;
 	S2D_Sound *level_;
 	S2D_Sound *end_;
