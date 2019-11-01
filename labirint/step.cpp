@@ -10,16 +10,64 @@
 #include <chrono>
 #include <thread>
 #include "types.h"
+#include <random>
 
-void mob_walking(map_t map, cord_t* co_m, int col_mob) {
+void mob_walking(map_t map, cord_t* co_m, int col_mob, move_obj_desc_t der) {
 	int ran;
 	for (int i = 0; i < col_mob; i++) {
 		int x = co_m[i].x;
 		int y = co_m[i].y;
-		ran = rand() % 5;
+		double dx1 = x - der.to_x, dy1 = y - der.to_y;
+		double s1 = sqrt(dx1*dx1 + dy1 * dy1);
 
-		if (ran == 0) {
+		 dx1=x-der.to_x, dy1 = y-1-der.to_y;
+		double dx2 = x+1 -der.to_x, dy2 = y -der.to_y;
+		double s2 = sqrt(dx1*dx1 + dy1*dy1);
+		double s3= sqrt(dx2*dx2 + dy2*dy2);
+		 dx1 = x - der.to_x, dy1 = y+1 - der.to_y;
+		 dx2 = x-1 - der.to_x, dy2 = y - der.to_y;
+		 double s4 = sqrt(dx1*dx1 + dy1 * dy1);
+		 double s5 = sqrt(dx2*dx2 + dy2 * dy2);
 
+		
+
+
+		double p[5];
+		p[0] = 1.0 / (s1 + 0.00000001);
+		p[1] = 1.0 / (s2 + 0.00000001);
+		p[2] = 1.0 / (s3 + 0.00000001);
+		p[3] = 1.0 / (s4 + 0.00000001);
+		p[4] = 1.0 / (s5 + 0.00000001);
+		double sum_p = p[0] + p[1] + p[2] + p[3] + p[4];
+		p[0] = p[0] / sum_p;
+		p[1] = p[1] / sum_p;
+		p[2] = p[2] / sum_p;
+		p[3] = p[3] / sum_p;
+		p[4] = p[4] / sum_p;
+
+		//ran = rand() % 5;
+
+		static std::random_device rd;
+		static std::mt19937 gen(rd());
+		std::discrete_distribution<> d({ p[0], p[1], p[2], p[3], p[4] });
+		
+		ran = d(gen);
+
+		/*double bigger_p = 0;
+		int best_idx = 0;
+		for (int c = 0; c < 5; c++)
+		{
+			if (p[c] > bigger_p)
+			{
+				bigger_p = p[c];
+				best_idx = c;
+			}
+		}
+
+		ran = best_idx;*/
+
+		if (ran == 0)
+		{
 
 		}
 		else if (ran == 1) {

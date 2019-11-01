@@ -1,5 +1,6 @@
 // simple2d.h
 
+#pragma once
 #ifdef __cplusplus
 extern "C" {
 #endif
