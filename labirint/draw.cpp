@@ -280,23 +280,24 @@ void draw_menu(short menu_h, short menu_w,map_t map, person_status_t state, disp
 			display.consoleBuffer[x + map.w * y].Attributes = make_attrib(0, 0);*/
 			/*if (y == 0) {*/
 			if (y == map.h) {
-				S2D_Text *txt = S2D_CreateText("C:/vera.ttf", "Lifes:", 20);
-			
-				txt->x = 8;
-				txt->y = 644;
-				txt->color.r = 0.3;
-				txt->color.g = 0.3;
-				txt->color.b = 1.0;
-				txt->color.a = 0.7;
+				
+				
+				resuarces.txt_->x = 8;
+				resuarces.txt_->y = 644;
+				resuarces.txt_->color.r = 0.3;
+				resuarces.txt_->color.g = 0.3;
+				resuarces.txt_->color.b = 1.0;
+				resuarces.txt_->color.a = 0.7;
 				/*std::ostringstream oss;
 				oss << state.col_hearts;
 				std::string uu = oss.str();
 				std::string str = "Lifes:"+uu;*/
 				
-				S2D_SetText(txt, "Lifes:" );
-				int x_lifee = 60;
+				S2D_SetText(resuarces.txt_, "Lifes:" );
+				int x_lifee = 63;
 				for (int i = 0; i < state.col_hearts; i++)
 				{
+				
 					img = resuarces.life;
 					img->x = x_lifee;
 					x_lifee+=40;;
@@ -308,19 +309,19 @@ void draw_menu(short menu_h, short menu_w,map_t map, person_status_t state, disp
 					display.consoleBuffer[(i + 6) + map.w * (map.h + 0)].Attributes = make_attrib(2, 0);
 					*/
 				}
-				S2D_DrawText(txt);
+				S2D_DrawText(resuarces.txt_);
 				/*}*/
 			}
 
 			else if (y == map.h+1) {
-					S2D_Text *txt = S2D_CreateText("C:/vera.ttf", "Swords:", 20);;
-					txt->x = 4;
-					txt->y = p1.y;
-					txt->color.r = 0.3;
-					txt->color.g = 0.3;
-					txt->color.b = 1.0;
-					txt->color.a = 0.7;
-					S2D_SetText(txt, "Swords:");
+				//. = S2D_CreateText("C:/vera.ttf", "Swords:", 20);;
+				resuarces.txt_->x = 4;
+				resuarces.txt_->y = p1.y;
+				resuarces.txt_->color.r = 0.3;
+				resuarces.txt_->color.g = 0.3;
+				resuarces.txt_->color.b = 1.0;
+				resuarces.txt_->color.a = 0.7;
+					S2D_SetText(resuarces.txt_, "Swords:");
 					int x_life = 80;
 					for (int i = 0; i < state.col_sw; i++)
 					{
@@ -339,18 +340,18 @@ void draw_menu(short menu_h, short menu_w,map_t map, person_status_t state, disp
 						*/
 					}
 					
-					S2D_DrawText(txt);
+					S2D_DrawText(resuarces.txt_);
 					/*}*/
 				}
 			else if (y == map.h + 2) {
-				S2D_Text *txt = S2D_CreateText("C:/vera.ttf", "Stars:", 20);;
-				txt->x = 4;
-				txt->y = p1.y;
-				txt->color.r = 0.3;
-				txt->color.g = 0.3;
-				txt->color.b = 1.0;
-				txt->color.a = 0.7;
-				S2D_SetText(txt, "Stars:");
+				
+					resuarces.txt_->x = 4;
+					resuarces.txt_->y = p1.y;
+					resuarces.txt_->color.r = 0.3;
+					resuarces.txt_->color.g = 0.3;
+					resuarces.txt_->color.b = 1.0;
+					resuarces.txt_->color.a = 0.7;
+				S2D_SetText(resuarces.txt_, "Stars:");
 				int x_life = 60;
 				for (int i = 0; i < state.col_zv; i++)
 				{
@@ -369,28 +370,28 @@ void draw_menu(short menu_h, short menu_w,map_t map, person_status_t state, disp
 					*/
 				}
 
-				S2D_DrawText(txt);
+				S2D_DrawText(resuarces.txt_);
 				/*}*/
 
 			}
 			else if (y == map.h + 3) {
-				S2D_Text *txt = S2D_CreateText("C:/vera.ttf", "Mood:", 20);;
-				txt->x = 4;
-				txt->y = p1.y;
-				txt->color.r = 0.3;
-				txt->color.g = 0.3;
-				txt->color.b = 1.0;
-				txt->color.a = 0.7;
+			
+				resuarces.txt_->x = 4;
+				resuarces.txt_->y = p1.y;
+				resuarces.txt_->color.r = 0.3;
+				resuarces.txt_->color.g = 0.3;
+				resuarces.txt_->color.b = 1.0;
+				resuarces.txt_->color.a = 0.7;
 				if (state.mood == mood_good) {
-					S2D_SetText(txt, "Mood: )");
+					S2D_SetText(resuarces.txt_, "Mood: )");
 				}
 				else if (state.mood == mood_bad) {
-					S2D_SetText(txt, "Mood: (");
+					S2D_SetText(resuarces.txt_, "Mood: (");
 				}
 				else {
-					S2D_SetText(txt, "Mood: /");
+					S2D_SetText(resuarces.txt_, "Mood: /");
 				}
-				S2D_DrawText(txt);
+				S2D_DrawText(resuarces.txt_);
 				/*}*/
 			}
 			

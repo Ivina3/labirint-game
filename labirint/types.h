@@ -93,6 +93,6 @@ struct resuarces_t
 	S2D_Sound *level_;
 	S2D_Sound *end_;
 	std::string resources_path;
-
+	S2D_Text *txt_;
 	S2D_Music *mus;
 };
